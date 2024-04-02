@@ -3,6 +3,7 @@ from __future__ import annotations
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.style import StyleType
 from rich.text import Text
+import secrets
 
 
 class Bar:
@@ -97,7 +98,6 @@ class Bar:
 
 
 if __name__ == "__main__":
-    import random
     from time import sleep
 
     from rich.color import ANSI_COLOR_NAMES
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     console.print(Bar(width=20), f"   (.0, .0)")
 
     for range in ranges:
-        color = random.choice(list(ANSI_COLOR_NAMES.keys()))
+        color = secrets.SystemRandom().choice(list(ANSI_COLOR_NAMES.keys()))
         console.print(
             Bar(range, highlight_style=color, width=20),
             f"   {range}",
