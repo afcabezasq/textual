@@ -124,7 +124,7 @@ class Declaration:
 @dataclass
 class SelectorSet:
     selectors: list[Selector] = field(default_factory=list)
-    specificity: Specificity3 = (0, 0, 0)
+    specificity: Specificity3 = field(default_factory=lambda: (0, 0, 0))
 
     def __post_init__(self) -> None:
         SAME = CombinatorType.SAME
@@ -167,7 +167,7 @@ class RuleSet:
 
     @classmethod
     def _selector_to_css(cls, selectors: list[Selector]) -> str:
-        tokens: list[str] = []
+        tokens: list[str] = field(default_factory=list)
         for selector in selectors:
             if selector.combinator == CombinatorType.DESCENDENT:
                 tokens.append(" ")

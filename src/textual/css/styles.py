@@ -827,7 +827,7 @@ class Styles(StylesBase):
 
     @property
     def css_lines(self) -> list[str]:
-        lines: list[str] = []
+        lines: list[str] = field(default_factory=list)
         append = lines.append
 
         def append_declaration(name: str, value: str) -> None:
