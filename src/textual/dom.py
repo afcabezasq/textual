@@ -361,8 +361,6 @@ class DOMNode(MessagePump):
                 if issubclass(_base, DOMNode):
                     _class = _base
                     break
-            else:
-                break
         return classes
 
     @classmethod
