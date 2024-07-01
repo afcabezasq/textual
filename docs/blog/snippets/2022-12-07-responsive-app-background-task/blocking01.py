@@ -1,19 +1,19 @@
 import time
-from random import randint
 
 from textual.app import App, ComposeResult
 from textual.color import Color
 from textual.containers import Grid, VerticalScroll
 from textual.widget import Widget
 from textual.widgets import Footer, Label
+import secrets
 
 
 class ColourChanger(Widget):  # (1)!
     def on_click(self) -> None:
         self.styles.background = Color(
-            randint(1, 255),
-            randint(1, 255),
-            randint(1, 255),
+            secrets.SystemRandom().randint(1, 255),
+            secrets.SystemRandom().randint(1, 255),
+            secrets.SystemRandom().randint(1, 255),
         )
 
 
