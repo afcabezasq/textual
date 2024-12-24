@@ -82,7 +82,7 @@ def _is_python_path(path: str) -> bool:
         return True
     try:
         with open(path, "r") as source:
-            first_line = source.readline()
+            first_line = source.readline(5_000_000)
     except IOError:
         return False
     return first_line.startswith("#!") and "py" in first_line
