@@ -14,6 +14,7 @@ import subprocess
 import sys
 from string import Template
 from typing import NoReturn, Sequence
+from security import safe_command
 
 WINDOWS = platform.system() == "Windows"
 
@@ -103,7 +104,7 @@ def exec_python(args: Sequence[str], environment: dict[str, str]) -> None:
     """
     _flush()
     if WINDOWS:
-        subprocess.call([sys.executable, *args], env=environment)
+        safe_command.run(subprocess.call, [sys.executable, *args], env=environment)
     else:
         os.execvpe(sys.executable, ["python", *args], environment)
 
@@ -119,7 +120,7 @@ def exec_command(
     """
     _flush()
     if WINDOWS:
-        subprocess.call([command, *args], env=environment)
+        safe_command.run(subprocess.call, [command, *args], env=environment)
     else:
         os.execvpe(command, [command, *args], environment)
 
